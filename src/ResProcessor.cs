@@ -1,4 +1,4 @@
-﻿namespace iiMin;
+﻿namespace ii.Min;
 
 public class ResProcessor
 {
