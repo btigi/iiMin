@@ -3,6 +3,23 @@
 
 iiMin is a C# library supporting the modification of files relating to M.A.X, the 1996 RTS game developed by Interplay Productions.
 
+| Name   | Read | Write | Comment
+|--------|:----:|-------|--------
+| CAM    | ✗   |   ✗   | Plain text / binary
+| RES    | ✔   |   ✗   | 
+| INI    | ✗   |   ✗   | Plain text
+| DMO    | ✗   |   ✗   |  
+| DTA    | ✗   |   ✗   | 
+| FLC    | ✗   |   ✗   | 
+| FON    | ✗   |   ✗   | 
+| MSC    | ✗   |   ✗   | 
+| MPS    | ✗   |   ✗   | Plain text
+| MVE    | ✗   |   ✗   | 
+| PAL    | ✗   |   ✗   | 
+| SCE    | ✗   |   ✗   | Plain text / binary
+| SPW    | ✗   |   ✗   | 
+| TRA    | ✗   |   ✗   | Plain text
+| WRL    | ✔   |   ✗   | 
 
 ## Usage
 
