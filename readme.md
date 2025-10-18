@@ -6,7 +6,6 @@ iiMin is a C# library supporting the modification of files relating to M.A.X, th
 | Name   | Read | Write | Comment
 |--------|:----:|-------|--------
 | CAM    | ✗   |   ✗   | Plain text / binary
-| RES    | ✔   |   ✗   | 
 | INI    | ✗   |   ✗   | Plain text
 | DMO    | ✗   |   ✗   |  
 | DTA    | ✗   |   ✗   | 
@@ -16,10 +15,11 @@ iiMin is a C# library supporting the modification of files relating to M.A.X, th
 | MPS    | ✗   |   ✗   | Plain text
 | MVE    | ✗   |   ✗   | 
 | PAL    | ✗   |   ✗   | 
+| RES    | ✔   |   ✔   | 
 | SCE    | ✗   |   ✗   | Plain text / binary
 | SPW    | ✗   |   ✗   | 
 | TRA    | ✗   |   ✗   | Plain text
-| WRL    | ✔   |   ✗   | 
+| WRL    | ✔   |   ✔   | 
 
 ## Usage
 
