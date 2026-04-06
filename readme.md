@@ -11,13 +11,14 @@ iiMin is a C# library supporting the modification of files relating to M.A.X, th
 | DTA    | ✗   |   ✗   | 
 | FLC    | ✗   |   ✗   | 
 | FON    | ✗   |   ✗   | 
-| MSC    | ✗   |   ✗   | 
+| GFX    | ✔   |   ✗   | Extensionless images contained within RES
+| MSC    | ✗   |   ✗   | Music - standard WAV
 | MPS    | ✗   |   ✗   | Plain text
-| MVE    | ✗   |   ✗   | 
+| MVE    | ✗   |   ✗   | Interplay movie
 | PAL    | ✗   |   ✗   | 
 | RES    | ✔   |   ✔   | 
 | SCE    | ✗   |   ✗   | Plain text / binary
-| SPW    | ✗   |   ✗   | 
+| SPW    | ✗   |   ✗   | Sounds - standard WAV
 | TRA    | ✗   |   ✗   | Plain text
 | WRL    | ✔   |   ✔   | 
 
