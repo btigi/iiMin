@@ -1,83 +1,69 @@
-﻿namespace ii.Min;
+﻿using ii.Min.Model;
+
+namespace ii.Min;
 
 public class WrlProcessor
 {
-    public WrlFile Read(string filename)
-    {
-        const int TileDimension = 64;
-        const int PaletteLength = 768;
+	private const string Signature = "WRL";
+	private const int TileDimension = 64;
+	private const int PaletteLength = 768;
 
-        var result = new WrlFile();
-        using var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
-        using var br = new BinaryReader(fs);
+	public WrlFile Read(string filename)
+	{
+		var fileData = File.ReadAllBytes(filename);
+		return Read(fileData);
+	}
 
-        result.Signature = new string(br.ReadChars(3));
-        if (result.Signature != "WRL")
-        {
-            return result;
-        }
+	public WrlFile Read(byte[] fileData)
+	{
+		using var stream = new MemoryStream(fileData);
+		using var reader = new BinaryReader(stream);
 
-        result.Version = br.ReadInt16();
-        if (result.Version != 1)
-        {
-            return result;
-        }
+		var result = new WrlFile();
 
-        result.X = br.ReadInt16();
-        result.Y = br.ReadInt16();
+		var signature = new string(reader.ReadChars(3));
+		if (signature != Signature)
+		{
+			throw new InvalidDataException($"Invalid WRL file. Expected signature 'WRL', got 0x{signature:X8}.");
+		}
 
-        result.Unknown1 = br.ReadByte(); // 1 byte null marker to separate contents
-        result.Unknown2 = br.ReadBytes(12544); // This seems a fixed size in all WRL files
+		result.Version = reader.ReadInt16();
+		result.Width = reader.ReadInt16();
+		result.Height = reader.ReadInt16();
 
-        result.Unknown3 = br.ReadByte(); // 1 byte null marker to separate contents
-        result.Unknown4 = br.ReadBytes(25085); // This seems a fixed size in all WRL files
+		var cellCount = result.Width * result.Height;
+		result.Minimap = reader.ReadBytes(cellCount);
 
-        result.Unknown5 = br.ReadByte(); // 1 byte null marker to separate contents
-        result.TileCount = br.ReadInt16();
+		result.TileLookup = new ushort[cellCount];
+		for (var i = 0; i < cellCount; i++)
+		{
+			result.TileLookup[i] = reader.ReadUInt16();
+		}
 
-        var tileDataSize = result.TileCount * TileDimension * TileDimension;
-        result.TileData = br.ReadBytes(tileDataSize);
+		result.TileCount = reader.ReadUInt16();
+		result.TileData = reader.ReadBytes(result.TileCount * TileDimension * TileDimension);
+		result.Palette = reader.ReadBytes(PaletteLength);
+		result.TerrainInfo = reader.ReadBytes(result.TileCount);
+		return result;
+	}
 
-        result.Palette = br.ReadBytes(PaletteLength);
+	public void Write(string filename, WrlFile wrlFile)
+	{
+		using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+		using var bw = new BinaryWriter(fs);
 
-        result.TerrainInfo = br.ReadBytes(result.TileCount);
-        return result;
-    }
-
-    public void Write(string filename, WrlFile wrlFile)
-    {
-        using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
-        using var bw = new BinaryWriter(fs);
-
-        // Write signature (3 chars)
-        bw.Write(wrlFile.Signature.ToCharArray());
-
-        // Write version
-        bw.Write(wrlFile.Version);
-
-        // Write coordinates
-        bw.Write((short)wrlFile.X);
-        bw.Write((short)wrlFile.Y);
-
-        // Write first section
-        bw.Write(wrlFile.Unknown1);
-        bw.Write(wrlFile.Unknown2);
-
-        // Write second section
-        bw.Write(wrlFile.Unknown3);
-        bw.Write(wrlFile.Unknown4);
-
-        // Write tile information
-        bw.Write(wrlFile.Unknown5);
-        bw.Write((short)wrlFile.TileCount);
-
-        // Write tile data
-        bw.Write(wrlFile.TileData);
-
-        // Write palette
-        bw.Write(wrlFile.Palette);
-
-        // Write terrain info
-        bw.Write(wrlFile.TerrainInfo);
-    }
+		bw.Write("WRL".ToCharArray());
+		bw.Write(wrlFile.Version);
+		bw.Write((short)wrlFile.Width);
+		bw.Write((short)wrlFile.Height);
+		bw.Write(wrlFile.Minimap);
+		foreach (var index in wrlFile.TileLookup)
+		{ 
+			bw.Write(index);
+		}
+		bw.Write((ushort)wrlFile.TileCount);
+		bw.Write(wrlFile.TileData);
+		bw.Write(wrlFile.Palette);
+		bw.Write(wrlFile.TerrainInfo);
+	}
 }

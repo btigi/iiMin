@@ -1,4 +1,4 @@
-﻿namespace ii.Min;
+﻿namespace ii.Min.Model;
 
 public enum ImageType
 {

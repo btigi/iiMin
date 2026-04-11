@@ -1,4 +1,6 @@
-﻿namespace ii.Min;
+﻿using ii.Min.Model;
+
+namespace ii.Min;
 
 public partial class ResProcessor
 {
@@ -19,11 +21,11 @@ public partial class ResProcessor
         var fileListingOffset = br.ReadInt32();
         var fileListingCount = br.ReadInt32() / 16;
 
-        var fileInfos = new List<FileInfo>();
+        var fileInfos = new List<ResFileInfo>();
         br.BaseStream.Seek(fileListingOffset, SeekOrigin.Begin);
         for (int i = 0; i < fileListingCount; i++)
         {
-            var fileInfo = new FileInfo();
+            var fileInfo = new ResFileInfo();
             fileInfo.Name = String.Join("", br.ReadChars(FilenameLength));
             fileInfo.Name = fileInfo.Name.Trim('\0');
             fileInfo.Offset = br.ReadInt32();

@@ -1,0 +1,13 @@
+namespace ii.Min.Model;
+
+public enum TeamClan : byte
+{
+  TEAM_CLAN_THE_CHOSEN = 1,
+  TEAM_CLAN_CRIMSON_PATH = 2,
+  TEAM_CLAN_VON_GRIFFIN = 3,
+  TEAM_CLAN_AYERS_HAND = 4,
+  TEAM_CLAN_MUSASHI = 5,
+  TEAM_CLAN_SACRED_EIGHTS = 6,
+  TEAM_CLAN_7_KNIGHTS = 7,
+  TEAM_CLAN_AXIS_INC = 8
+};

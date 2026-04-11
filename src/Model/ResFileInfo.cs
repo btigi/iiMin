@@ -1,9 +1,9 @@
-﻿namespace ii.Min;
+﻿namespace ii.Min.Model;
 
-internal class FileInfo
+internal class ResFileInfo
 {
     public string Name { get; set; } = string.Empty;
     public int Offset { get; set; }
     public int Length { get; set; }
-    public byte[] Content { get; set; } = Array.Empty<byte>();
+    public byte[] Content { get; set; } = [];
 }

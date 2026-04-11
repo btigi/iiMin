@@ -5,22 +5,22 @@ iiMin is a C# library supporting the modification of files relating to M.A.X, th
 
 | Name   | Read | Write | Comment
 |--------|:----:|-------|--------
-| CAM    | ✗   |   ✗   | Plain text / binary
+| CAM    | ✔   |   ✗   | Mission file - campaign: plain text (briefing) / binary (mission)
 | INI    | ✗   |   ✗   | Plain text
-| DMO    | ✗   |   ✗   |  
-| DTA    | ✗   |   ✗   | 
+| DMO    | ✔   |   ✗   | Mission file - Demo
+| DTA    | ✔   |   ✗   | Mission - Unknown
 | FLC    | ✗   |   ✗   | 
 | FON    | ✗   |   ✗   | 
 | GFX    | ✔   |   ✗   | Extensionless images contained within RES
 | MSC    | ✗   |   ✗   | Music - standard WAV
 | MPS    | ✗   |   ✗   | Plain text
-| MVE    | ✗   |   ✗   | Interplay movie
+| MVE    | ➜   |   ✗   | Interplay movie, see [ii.SingleMve](https://www.nuget.org/packages/ii.SingleMve/)
 | PAL    | ✗   |   ✗   | 
 | RES    | ✔   |   ✔   | 
-| SCE    | ✗   |   ✗   | Plain text / binary
+| SCE    | ✔   |   ✗   | Mission file - Scenario : plain text (briefing) / binary (mission)
 | SPW    | ✗   |   ✗   | Sounds - standard WAV
-| TRA    | ✗   |   ✗   | Plain text
-| WRL    | ✔   |   ✔   | 
+| TRA    | ✔   |   ✗   | Mission file - Training : plain text (briefing) / binary (mission)
+| WRL    | ✔   |   ✔   | Map data
 
 ## Usage
 
@@ -57,3 +57,5 @@ $ dotnet build
 ## Licencing
 
 iiMin is licenced under the MIT License. Full licence details are available in licence.md
+
+iiMin uses information from https://klei1984.github.io/max/save under MIT licence
