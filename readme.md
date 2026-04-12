@@ -9,7 +9,7 @@ iiMin is a C# library supporting the modification of files relating to M.A.X, th
 | INI    | ✗   |   ✗   | Plain text
 | DMO    | ✔   |   ✗   | Mission file - Demo
 | DTA    | ✔   |   ✗   | Mission - Unknown
-| FLC    | ✗   |   ✗   | 
+| FLC    | ➜   |   ✗   | Autodesk FLC, see [ii.FLC](https://www.nuget.org/packages/ii.FLC/)
 | FON    | ✗   |   ✗   | 
 | GFX    | ✔   |   ✗   | Extensionless images contained within RES
 | MSC    | ✗   |   ✗   | Music - standard WAV
